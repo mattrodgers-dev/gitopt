@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gitopt"
+version = "0.1.0"
+description = "CLI tool for analyzing and optimizing Git repositories"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "mattrodgers-dev", email = "mattrodgers.dev@proton.me"}
+]
+dependencies = [
+    "click>=8.0",
+    "gitpython>=3.1",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+gitopt = "gitopt.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "--verbose --cov=gitopt --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = []
